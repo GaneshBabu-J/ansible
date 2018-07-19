@@ -1,17 +1,22 @@
 ---
 - name: Create groups
   group:
-    name={{ item.gname }}
+    name={{ item.groupname }}
     state={{ item.state }}
   with_items:
     - "{{ ds_groups }}"
 
 - name: Create users
   user:
-    createhome=yes
     comment={{ item.comment }}
     name={{ item.user }}
     state={{ item.state }}
-    group={{ item.group }}
+    groups={{ item.group }}
+  with_items:
+    - "{{ ds_users }}"
+
+- authorized_key:
+    user={{ item.user }}
+    key={{ lookup('file', item.user+'.pub') }}
   with_items:
     - "{{ ds_users }}"
