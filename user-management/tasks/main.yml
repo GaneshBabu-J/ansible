@@ -1,0 +1,17 @@
+---
+- name: Create groups
+  group:
+    name={{ item.gname }}
+    state={{ item.state }}
+  with_items:
+    - "{{ ds_groups }}"
+
+- name: Create users
+  user:
+    createhome=yes
+    comment={{ item.comment }}
+    name={{ item.user }}
+    state={{ item.state }}
+    group={{ item.group }}
+  with_items:
+    - "{{ ds_users }}"

@@ -1,0 +1,5 @@
+--- # Master playbook for webservers
+- hosts: 192.168.34.20 
+  become: yes
+  roles:
+    - user-management 
