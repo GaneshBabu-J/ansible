@@ -20,3 +20,9 @@
     key={{ lookup('file', item.user+'.pub') }}
   with_items:
     - "{{ ds_users }}"
+
+- name: Assign appropriate permissions
+  file:
+    path: "/home/{{ item.user }}"
+    mode: 0750
+  with_items: "{{ ds_users }}"
