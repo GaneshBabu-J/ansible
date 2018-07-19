@@ -1,8 +1,8 @@
 ---
 ds_groups:
-  - {gname: groupa, state: present}
-  - {gname: groupb, state: present}
+  - {groupname: groupa, state: present}
+  - {groupname: groupb, state: present}
 ds_users:
-  - {user: auser, comment: "A User", state: present, group: groupa}
-  - {user: buser, comment: "B user", state: present, group: groupb}
-  - {user: cuser, comment: "C user", state: present, group: groupb}
+  - {user: auser, comment: "A User", state: present, group: groupa, key: auser.pub}
+  - {user: buser, comment: "B user", state: present, group: groupb, key: buser.pub}
+  - {user: cuser, comment: "C user", state: present, group: groupb, key: cuser.pub}
